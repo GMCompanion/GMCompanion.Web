@@ -21,7 +21,7 @@ export default function Home() {
       .then((json) => setCharacters(json));
   }, []);
 
-  if (!characters) {
+  if (characters.length == 0) {
     return (
       <div>
         <Spinner size="lg" />
@@ -32,7 +32,7 @@ export default function Home() {
   return (
     <div className="flex items-center min-h-screen flex-col items-start">
       {characters.map((character) => (
-        <Card shadow="sm" key={character.id} isPressable className="w-64 p-2 m-4" onPress={() => router.push(`../inventory?id=${character.id}`)}>
+        <Card shadow="sm" key={character.id} isPressable className="w-64 p-2 m-4" onPress={() => router.push(`./inventory/${character.id}`)}>
           <CardHeader className="flex gap-3">
             <div className="flex flex-col">
               <p className="text-md">{character.name}</p>
